@@ -1,0 +1,41 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Attributes;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class Scraping {
+    public static int scrap(Offers offers) {
+        try {
+            //filtry ustawione na 5 pokoi i Wrocław, co by serwera zbytnio nie kłopotać
+            //ilosc wynikow na stronie pokazuje bez ofert promowanych (mimo, ze spelniaja filtr), wiec jest liczba stron*3 mniej niz tu
+            Document doc = Jsoup.connect("https://www.otodom.pl/sprzedaz/mieszkanie/wroclaw/?search%5Bfilter_enum_rooms_num%5D%5B0%5D=5&search%5Bregion_id%5D=1&search%5Bcity_id%5D=39&nrAdsPerPage=72").get();
+            int i = 0;
+            while(true) {
+                Elements articles = doc.select("article");
+                for (Element article : articles) {
+                    //poki co jako stringi
+                    //na razie tyle, pewnie jakies id oferty gdzies tam jest
+                    String rooms = article.select("li.offer-item-rooms").text();
+                    String price = article.select("li.offer-item-price").text();
+                    String area = article.select("li.offer-item-area").text();
+                    String pricePerArea = article.select("li.offer-item-price-per-m").text();
+
+                    offers.addOffer(new SingleOffer(rooms, price, area, pricePerArea));
+                }
+
+                //następna karta
+                Attributes attributes = doc.selectFirst("div.after-offers li.pager-next a").attributes();
+                if(attributes.get("class").equals("disabled")){
+                    break;
+                }else{
+                    doc = Jsoup.connect(attributes.get("href")).get();
+                }
+            }
+            return 0;
+        } catch (Exception e) {
+            System.out.println(e);
+            return 1;
+        }
+    }
+}
