@@ -1,4 +1,6 @@
 public class SingleOffer {
+
+    private long id;
     private String numberOfRooms;
     private String price;
     private String area;
@@ -46,7 +48,8 @@ public class SingleOffer {
     @Override
     public String toString() {
         return "SingleOffer{" +
-                "numberOfRooms='" + numberOfRooms + '\'' +
+                "id=" + id +
+                ", numberOfRooms='" + numberOfRooms + '\'' +
                 ", price='" + price + '\'' +
                 ", area='" + area + '\'' +
                 ", pricePerArea='" + pricePerArea + '\'' +
