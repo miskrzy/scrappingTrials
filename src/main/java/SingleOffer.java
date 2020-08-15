@@ -1,47 +1,47 @@
 public class SingleOffer {
 
     private long id;
-    private String numberOfRooms;
-    private String price;
-    private String area;
-    private String pricePerArea;
+    private int numberOfRooms;
+    private int price;
+    private float area;
+    private int pricePerArea;
 
-    public SingleOffer(String numberOfRooms, String price, String area, String pricePerArea) {
+    public SingleOffer(int numberOfRooms, int price, float area, int pricePerArea) {
         this.numberOfRooms = numberOfRooms;
         this.price = price;
         this.area = area;
         this.pricePerArea = pricePerArea;
     }
 
-    public String getNumberOfRooms() {
+    public int getNumberOfRooms() {
         return numberOfRooms;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public String getArea() {
+    public float getArea() {
         return area;
     }
 
-    public String getPricePerArea() {
+    public int getPricePerArea() {
         return pricePerArea;
     }
 
-    public void setNumberOfRooms(String numberOfRooms) {
+    public void setNumberOfRooms(int numberOfRooms) {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setArea(String area) {
+    public void setArea(float area) {
         this.area = area;
     }
 
-    public void setPricePerArea(String pricePerArea) {
+    public void setPricePerArea(int pricePerArea) {
         this.pricePerArea = pricePerArea;
     }
 

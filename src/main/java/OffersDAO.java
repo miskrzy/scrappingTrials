@@ -9,11 +9,17 @@ public class OffersDAO {
     }
 
     public int saveOffer(SingleOffer singleOffer){
-        String sql="insert into offers (number_of_rooms, price, area, price_per_m) values (\'"
+        /*String sql="insert into offers (number_of_rooms, price, area, price_per_m) values (\'"
                 +singleOffer.getNumberOfRooms()+"\', \'"
                 +singleOffer.getPrice()+"\', \'"
                 +singleOffer.getArea()+"\', \'"
                 +singleOffer.getPricePerArea()+"\');";
+*/
+        String sql="insert into offers (number_of_rooms, price, area, price_per_m) values ("
+                +singleOffer.getNumberOfRooms()+", "
+                +singleOffer.getPrice()+", "
+                +singleOffer.getArea()+", "
+                +singleOffer.getPricePerArea()+");";
 
         return jdbcTemplate.update(sql);
     }
